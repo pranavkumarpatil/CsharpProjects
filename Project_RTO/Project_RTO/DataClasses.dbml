@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="PROJECT_RTO" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=INPUN2-L5D22M13\SQLEXPRESS;Initial Catalog=PROJECT_RTO;Persist Security Info=True;User ID=sa" SettingsObjectName="Project_RTO.Properties.Settings" SettingsPropertyName="PROJECT_RTOConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Employee" Member="Employees">
+    <Type Name="Employee">
+      <Column Name="Emp_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Emp_Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Emp_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Emp_Address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Emp_Pan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Emp_Aadhar" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Emp_Mob" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Emp_Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Emp_Join_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Emp_IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Employee_Login" Member="Logins" ThisKey="Emp_Code" OtherKey="Emp_Code" Type="Login" />
+      <Association Name="Employee_Login1" Member="Logins1" ThisKey="Emp_Id" OtherKey="Emp_Id" Type="Login" />
+      <Association Name="Employee_X_Emp_Dept" Member="X_Emp_Depts" ThisKey="Emp_Id" OtherKey="Emp_Id" Type="X_Emp_Dept" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Login" Member="Logins">
+    <Type Name="Login">
+      <Column Name="Login_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Usr_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usr_Password" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Emp_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Emp_Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usr_Password_Change" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Emp_IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Login_Roles_Permission" Member="Roles_Permissions" ThisKey="Usr_Name" OtherKey="Usr_Name" Type="Roles_Permission" />
+      <Association Name="Employee_Login" Member="Employee" ThisKey="Emp_Code" OtherKey="Emp_Code" Type="Employee" IsForeignKey="true" />
+      <Association Name="Employee_Login1" Member="Employee1" ThisKey="Emp_Id" OtherKey="Emp_Id" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Document" Member="Documents">
+    <Type Name="Document">
+      <Column Name="Doc_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Doc_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Doc_IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Document_X_Cust_Doc" Member="X_Cust_Docs" ThisKey="Doc_Id" OtherKey="Doc_Id" Type="X_Cust_Doc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Department" Member="Departments">
+    <Type Name="Department">
+      <Column Name="Dept_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Dept_Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Dept_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Dept_Location" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Dept_IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Department_X_Emp_Dept" Member="X_Emp_Depts" ThisKey="Dept_Id" OtherKey="Dept_Id" Type="X_Emp_Dept" />
+    </Type>
+  </Table>
+  <Table Name="dbo.X_Emp_Dept" Member="X_Emp_Depts">
+    <Type Name="X_Emp_Dept">
+      <Column Name="Emp_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Dept_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Change_From" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Change_To" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Department_X_Emp_Dept" Member="Department" ThisKey="Dept_Id" OtherKey="Dept_Id" Type="Department" IsForeignKey="true" />
+      <Association Name="Employee_X_Emp_Dept" Member="Employee" ThisKey="Emp_Id" OtherKey="Emp_Id" Type="Employee" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Roles_Permission" Member="Roles_Permissions">
+    <Type Name="Roles_Permission">
+      <Column Name="Roles_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Usr_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Usr_Role" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Veh_Reg_Perm" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="Veh_Aproval_Perm" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="DL_Manage_Perm" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="User_Manage_Perm" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Login_Roles_Permission" Member="Login" ThisKey="Usr_Name" OtherKey="Usr_Name" Type="Login" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Registration" Member="Registrations">
+    <Type Name="Registration">
+      <Column Name="Reg_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cust_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cust_Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Veh_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Veh_Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="EngineNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ChassisNo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Reg_No" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Reg_Apply_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Reg_Approval_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Reg_Validupto_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Ownership_from_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Ownership_to_Date" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Application_ID" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Application_Status" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Customer_Registration" Member="Customer" ThisKey="Cust_Id" OtherKey="Cust_Id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Customer_Registration1" Member="Customer1" ThisKey="Cust_Code" OtherKey="Cust_Code" Type="Customer" IsForeignKey="true" />
+      <Association Name="Vehicle_Registration" Member="Vehicle" ThisKey="Veh_Code" OtherKey="Veh_Code" Type="Vehicle" IsForeignKey="true" />
+      <Association Name="Vehicle_Registration1" Member="Vehicle1" ThisKey="Veh_Id" OtherKey="Veh_Id" Type="Vehicle" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="Cust_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Cust_Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_Type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_Name" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_Address" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_Pan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_Aadhar" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_Mob" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Cust_IsActive" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Customer_Registration" Member="Registrations" ThisKey="Cust_Id" OtherKey="Cust_Id" Type="Registration" />
+      <Association Name="Customer_Registration1" Member="Registrations1" ThisKey="Cust_Code" OtherKey="Cust_Code" Type="Registration" />
+      <Association Name="Customer_X_Cust_Doc" Member="X_Cust_Docs" ThisKey="Cust_Id" OtherKey="Cust_Id" Type="X_Cust_Doc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Vehicle" Member="Vehicles">
+    <Type Name="Vehicle">
+      <Column Name="Veh_Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Veh_Code" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Veh_Company" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Veh_Model" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Veh_Color" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="Veh_Type" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Vehicle_Registration" Member="Registrations" ThisKey="Veh_Code" OtherKey="Veh_Code" Type="Registration" />
+      <Association Name="Vehicle_Registration1" Member="Registrations1" ThisKey="Veh_Id" OtherKey="Veh_Id" Type="Registration" />
+    </Type>
+  </Table>
+  <Table Name="dbo.X_Cust_Doc" Member="X_Cust_Docs">
+    <Type Name="X_Cust_Doc">
+      <Column Name="Doc_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Cust_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Doc_Upload" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="Customer_X_Cust_Doc" Member="Customer" ThisKey="Cust_Id" OtherKey="Cust_Id" Type="Customer" IsForeignKey="true" />
+      <Association Name="Document_X_Cust_Doc" Member="Document" ThisKey="Doc_Id" OtherKey="Doc_Id" Type="Document" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

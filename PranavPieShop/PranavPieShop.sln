@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PranavPieShop", "PranavPieShop\PranavPieShop.csproj", "{AF723BF7-6243-43C4-B303-CB201326002E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PranavPieShopTest", "PranavPieShopTest\PranavPieShopTest.csproj", "{A6F5E5AD-7117-4CBE-A229-594B21BE0A0B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF723BF7-6243-43C4-B303-CB201326002E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF723BF7-6243-43C4-B303-CB201326002E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF723BF7-6243-43C4-B303-CB201326002E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF723BF7-6243-43C4-B303-CB201326002E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6F5E5AD-7117-4CBE-A229-594B21BE0A0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6F5E5AD-7117-4CBE-A229-594B21BE0A0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6F5E5AD-7117-4CBE-A229-594B21BE0A0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6F5E5AD-7117-4CBE-A229-594B21BE0A0B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A0DFE848-377E-4790-83B9-E64B9D518AF5}
+	EndGlobalSection
+EndGlobal
